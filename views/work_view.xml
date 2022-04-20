@@ -1,0 +1,40 @@
+<odoo>
+
+    <record model="ir.ui.view" id="works_form_view">
+        <field name="name">projects.works</field>
+        <field name="model">projects.works</field>
+        <field name="arch" type="xml">
+            <form string="Work form">
+                <group>
+                    <field name="name"/>
+                    <field name="project_id"/>
+                    <field name="employe_ids"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="work_tree_view">
+        <field name="name">projects.works</field>
+        <field name="model">projects.works</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="employe_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="works_list_action">
+        <field name="name">Works</field>
+        <field name="res_model">projects.works</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first work</p>
+        </field>
+    </record>
+
+
+    <menuitem id="works_menu" name="Works" parent="projects_menu" action="works_list_action"/>
+</odoo>

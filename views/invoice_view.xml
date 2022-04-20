@@ -1,0 +1,43 @@
+<odoo>
+
+        <record model="ir.ui.view" id="invoice_form_view">
+        <field name="name">projects.invoice</field>
+        <field name="model">projects.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Invoice form">
+                <group>
+                    <field name="name"/>
+                    <field name="project_id"/>
+                    <field name="works_id"/>
+                    <field name="sum"/>
+                    <field name="status"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="invoice_tree_view">
+        <field name="name">projects.invoice</field>
+        <field name="model">projects.invoice</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="sum"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="invoice_list_action">
+        <field name="name">Invoices</field>
+        <field name="res_model">projects.invoice</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first invoice</p>
+        </field>
+    </record>
+
+
+    <menuitem id="invoice_menu" name="Invoices" parent="projects_menu" action="invoice_list_action"/>
+</odoo>
