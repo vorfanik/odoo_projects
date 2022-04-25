@@ -28,6 +28,8 @@
         'views/project_view.xml',
         'views/work_view.xml',
         'views/invoice_view.xml',
+        'views/hr_employee_inherited_view.xml',
+        'views/res_partner_inherited_view.xml',
         'views/templates.xml',
 
     ],

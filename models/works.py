@@ -8,4 +8,3 @@ class Works(models.Model):
 
     name = fields.Char(string="Name", required=True)
     project_id = fields.Many2one('projects.project', string = "Project", ondelete="set null")
-    employe_ids = fields.Many2many('hr.employee', string="Employee")

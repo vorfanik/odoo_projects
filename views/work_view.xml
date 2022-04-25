@@ -8,7 +8,6 @@
                 <group>
                     <field name="name"/>
                     <field name="project_id"/>
-                    <field name="employe_ids"/>
                 </group>
             </form>
         </field>
@@ -21,7 +20,6 @@
             <tree>
                 <field name="name"/>
                 <field name="project_id"/>
-                <field name="employe_ids"/>
             </tree>
         </field>
     </record>

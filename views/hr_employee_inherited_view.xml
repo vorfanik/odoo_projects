@@ -1,0 +1,30 @@
+<odoo>
+
+    <record model="ir.ui.view" id="view_employee_form_inherited">
+        <field name="name">projects.employee</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <notebook position="inside">
+                <page string="Assigned Projects">
+                    <group>
+                        <field name="manager_ids"/>
+                        <field name="project_manager"/>
+                        <field name="project_employee"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="employees_list_action">
+        <field name="name">Employees</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="configuration_menu" name="Configurations" parent="projects.main_projects_menu"/>
+    <menuitem id="employees_menu" name="Employees" parent="configuration_menu" action="employees_list_action"/>
+
+</odoo>

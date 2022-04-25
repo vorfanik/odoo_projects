@@ -1,0 +1,35 @@
+<odoo>
+    <!-- Res partner inherited form view -->
+    <record model="ir.ui.view" id="view_partner_form_inherited">
+        <field name="name">.procects.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <notebook position="inside">
+                <page string="Assigned Projects">
+                    <group>
+                        <field name="project_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="manager_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="contact_list_action">
+        <field name="name">Contacts</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="configuration_menu" name="Configurations" parent="projects.main_projects_menu"/>
+    <menuitem id="contact_menu" name="Partners" parent="configuration_menu" action="contact_list_action"/>
+
+</odoo>
