@@ -9,9 +9,14 @@
                     <field name="name"/>
                     <field name="client_id"/>
                     <field name="manager_id"/>
-                    <field name="employe_ids"/>
                     <field name="start_date"/>
                     <field name="end_date"/>
+                    <field name="duration"/>
+                    <field name="active"/>
+                    <field name="employee_max"/>
+                    <field name="employees_percentage" widget="progressbar"/>
+                    <field name="employe_count"/>
+                    <field name="employe_ids"/>
                 </group>
 
                 <notebook colspan="4">
@@ -57,14 +62,38 @@
         <field name="name">projects.project</field>
         <field name="model">projects.project</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree string="Projects Tree" decoration-info="duration&lt;30" decoration-danger="duration&gt;90">
                 <field name="name"/>
                 <field name="client_id"/>
                 <field name="manager_id"/>
-                <field name="employe_ids"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
+                <field name="duration"/>
+                <field name="employees_percentage" widget="progressbar"/>
+                <field name="employe_count"/>
+                <field name="active"/>
             </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="project_calendar_view">
+        <field name="name">projects.calendar</field>
+        <field name="model">projects.project</field>
+        <field name="arch" type="xml">
+            <calendar string="Project Calendar" date_start="start_date" date_stop="end_date" color="manager_id">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="projects_graph_view">
+        <field name="name">projects.project.graph</field>
+        <field name="model">projects.project</field>
+        <field name="arch" type="xml">
+            <graph string="Participations by Projects">
+                <field name="name"/>
+                <field name="employe_count" type="measure"/>
+            </graph>
         </field>
     </record>
 
@@ -74,9 +103,50 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
-                <field name="client_id"/>
-                <field name="manager_id"/>
+                <field name="description"/>
+                <filter name="project" string="Active projects"
+                            domain="[('active', '=', True)]"/>
+                <group string="Group By">
+                    <filter name="by_manager" string="Managers"
+                            context="{'group_by': 'manager_id'}"/>
+                    <filter name="by_client" string="Clients"
+                        context="{'group_by': 'client_id'}"/>
+                </group>
+
             </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_project_kanban">
+        <field name="name">projects.project.kanban</field>
+        <field name="model">projects.project</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="name">
+                <field name="color" invisible="True"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override">
+                            <div t-attf-class="oe_kanban_content">
+                                <!-- title -->
+                                Client:
+                                <strong><field name="client_id"/></strong>
+                                <br/>
+                                Start date:
+                                <i><field name="start_date"/></i>
+                                <br/>
+                                End date:
+                                <i><field name="end_date"/></i>
+                                <br/>
+                                Works:
+                                <strong><field name="work_ids"/></strong>
+                                <br/>
+                                Employees:
+                                <field name="employe_count"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 
@@ -84,7 +154,7 @@
     <record model="ir.actions.act_window" id="project_list_action">
         <field name="name">Projects</field>
         <field name="res_model">projects.project</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form,calendar,graph,pivot</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create the first project</p>
         </field>

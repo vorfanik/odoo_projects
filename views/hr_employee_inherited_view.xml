@@ -8,11 +8,16 @@
 
             <notebook position="inside">
                 <page string="Assigned Projects">
-                    <group>
+                    <form>
+                        <strong>Managerial Duties </strong>
                         <field name="manager_ids"/>
+                        <br/>
+                        <strong>Project manager</strong>
                         <field name="project_manager"/>
+                        <br/>
+                        <strong>Projects employee</strong>
                         <field name="project_employee"/>
-                    </group>
+                    </form>
                 </page>
             </notebook>
         </field>

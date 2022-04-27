@@ -8,3 +8,4 @@ class Works(models.Model):
 
     name = fields.Char(string="Name", required=True)
     project_id = fields.Many2one('projects.project', string = "Project", ondelete="set null")
+    color = fields.Integer()

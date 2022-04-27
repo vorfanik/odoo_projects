@@ -24,10 +24,31 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="view_works_kanban">
+        <field name="name">projects.works.kanban</field>
+        <field name="model">projects.works</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="project_id">
+                <field name="color" invisible="True"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override">
+                            <div t-attf-class="oe_kanban_content">
+                                <!-- title -->
+                                Name:
+                                <strong><field name="name"/></strong>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="works_list_action">
         <field name="name">Works</field>
         <field name="res_model">projects.works</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create the first work</p>
         </field>
