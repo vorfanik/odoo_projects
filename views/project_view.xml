@@ -80,7 +80,7 @@
         <field name="name">projects.calendar</field>
         <field name="model">projects.project</field>
         <field name="arch" type="xml">
-            <calendar string="Project Calendar" date_start="start_date" date_stop="end_date" color="manager_id">
+            <calendar string="Project Calendar" date_start="start_date" date_stop="end_date" mode="month" color="manager_id">
                 <field name="name"/>
             </calendar>
         </field>
@@ -154,7 +154,7 @@
     <record model="ir.actions.act_window" id="project_list_action">
         <field name="name">Projects</field>
         <field name="res_model">projects.project</field>
-        <field name="view_mode">kanban,tree,form,calendar,graph,pivot</field>
+        <field name="view_mode">tree,kanban,form,calendar,graph,pivot</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create the first project</p>
         </field>

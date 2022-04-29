@@ -7,20 +7,20 @@ class Project(models.Model):
     _name = "projects.project"
     _description = "Projects"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(string=_("Name"), required=True)
     description = fields.Text()
-    start_date = fields.Date(string="Start Date", default=fields.Date.today)
-    end_date = fields.Date(string="End Date")
-    client_id = fields.Many2one('res.partner', string="Client", ondelete='set null')
-    manager_id = fields.Many2one('hr.employee', string="Project Manager", domain=[('manager_ids', '=', True)])
-    employe_ids = fields.Many2many('hr.employee', string="Employees")
-    employee_max = fields.Integer(string="Max employees")
+    start_date = fields.Date(string=_("Start Date"), default=fields.Date.today)
+    end_date = fields.Date(string=_("End Date"))
+    client_id = fields.Many2one('res.partner', string=_("Client"), ondelete='set null')
+    manager_id = fields.Many2one('hr.employee', string=_("Project Manager"), domain=[('manager_ids', '=', True)])
+    employe_ids = fields.Many2many('hr.employee', string=_("Employees"))
+    employee_max = fields.Integer(string=_("Max employees"))
     employe_count = fields.Integer(
-        string="Employee count", compute='_get_employee_count', store=True)
-    employees_percentage = fields.Float(string="Employees percentage (%)", compute='_employees_percentage')
+        string=_("Employee count"), compute='_get_employee_count', store=True)
+    employees_percentage = fields.Float(string=_("Employees percentage (%)"), compute='_employees_percentage')
     invoice_ids = fields.One2many('projects.invoice', 'project_id')
     work_ids = fields.One2many('projects.works', 'project_id')
-    duration = fields.Integer(string="Project duration", compute='_set_duration')
+    duration = fields.Integer(string=_("Project duration"), compute='_set_duration')
     active = fields.Boolean(default=True)
     color = fields.Integer()
 

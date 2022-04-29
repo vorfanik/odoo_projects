@@ -28,12 +28,14 @@
         'security/ir.model.access.csv',
         'views/project_view.xml',
         'views/work_view.xml',
-        'views/wizard_view.xml',
         'views/invoice_view.xml',
         'views/hr_employee_inherited_view.xml',
         'views/res_partner_inherited_view.xml',
         'views/templates.xml',
-
+        'views/wizard_view.xml',
+        'reports/project_report.xml',
+        'reports/invoice_report.xml',
+        'views/project_dash.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
